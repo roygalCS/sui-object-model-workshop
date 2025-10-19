@@ -23,11 +23,12 @@ const main = async () => {
 
   tx.moveCall({
     target: `${PACKAGE_ID}::key::set_code`,
-    arguments: [key, tx.pure.string("open_sesame")],
+    arguments: [key, tx.pure.u64(1234)],
   });
 
   const coin = tx.moveCall({
     target: `${PACKAGE_ID}::vault::withdraw`,
+    typeArguments: ["0x2::sui::SUI"],
     arguments: [tx.object(VAULT_ID), key],
   });
 
@@ -46,4 +47,6 @@ const main = async () => {
   console.log("Transaction Result:", result);
 };
 
-main();
+main().catch((err) => {
+  console.error("Transaction failed:", err);
+});
