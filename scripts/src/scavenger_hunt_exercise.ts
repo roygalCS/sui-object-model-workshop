@@ -23,7 +23,7 @@ const main = async () => {
 
   tx.moveCall({
     target: `${PACKAGE_ID}::key::set_code`,
-    arguments: [key, tx.pure.u64(1234)],
+    arguments: [key, tx.pure.u64(745223)],
   });
 
   const coin = tx.moveCall({
